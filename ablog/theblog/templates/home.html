@@ -8,10 +8,12 @@
         <li>
         <a href="{% url 'article-detail' post.pk %}"> {{ post.title }} </a>
             <br>
-            {{ post.author }}: {{ post.author.first_name }} - {{ post.author.last_name }}
+            {{ post.author }} - <a href="{% url 'update_post' post.pk %}"><small>(Edit)</a></small> | <a href="{% url 'delete_post' post.pk %}"><small>(Delete)</small></a>: {{ post.author.first_name }} - {{ post.author.last_name }}
             <br>
             {{ post.body }}
         </li>
+        <br>
+        <br>
     {% endfor %}
     </ul>
 
