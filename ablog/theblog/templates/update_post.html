@@ -3,12 +3,19 @@
 {% block content %}
 
     <h1>Update blog post</h1>
+    {% if user.is_authenticated %}
+    
     <div class="form-group">
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             <button class="btn btn-secondary">Update</button>
         </form>
-    </div>
+    </div> 
+    {% else %}
+
+    you need to login
+
+    {% endif %}
 
 {% endblock %}
