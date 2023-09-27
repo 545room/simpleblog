@@ -12,6 +12,10 @@
             <button class="btn btn-secondary">Post</button>
         </form>
     </div>
+    <script>
+        let name = '{{ user.id }}';
+        document.getElementById('elder').value = name;
+    </script>
     {% else %}
 
     you need to login

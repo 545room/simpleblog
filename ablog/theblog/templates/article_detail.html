@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 {% block title %} {{ post.title_tag }} {% endblock %}
 {% block content %}
-    <h1>{{ post.title }}</h1>
+    <br>
+    <br>
+    <h1>{{ post.title }}</h1> 
      <br>
      <p>
         {{ post.author }} 
         {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
         - <a href="{% url 'update_post' post.pk %}"><small>(Edit)</a></small> 
         |  <small>{{ post.post_date }}</small>
         | <a href="{% url 'delete_post' post.pk %}"><small>(Delete)</small></a>: {{ post.author.first_name }} - {{ post.author.last_name }}
+        {% endif %}
         {% endif %}
     </p>
      <br>
