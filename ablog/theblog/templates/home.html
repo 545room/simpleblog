@@ -6,22 +6,21 @@
     <ul>
     {% for post in object_list %}
         <li>
-        <a href="{% url 'article-detail' post.pk %}"> {{ post.title }}</a>
-        - <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
-        <br>
-        <small>{{ post.post_date }}</small>
-            <br>
-            {{ post.author }} 
-            {% if user.is_authenticated %}
-                {% if user.id == post.author.id %}
-                    - <a href="{% url 'update_post' post.pk %}"><small>(Edit)</a></small> 
-                    | <a href="{% url 'delete_post' post.pk %}"><small>(Delete)</small></a>
+            <h4><a href="{% url 'article-detail' post.pk %}"> {{ post.title }}</a></h4>
+            <div><small>Date:</small> {{ post.post_date }}</div>
+            <div><small>Category:</small> <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></div>
+            <div>
+                <small>Author:</small> {{ post.author.first_name }} {{ post.author.last_name }}
+                {% if user.is_authenticated %}
+                    {% if user.id == post.author.id %}
+                         <a href="{% url 'update_post' post.pk %}"><small>(Edit)</a></small> 
+                        | <a href="{% url 'delete_post' post.pk %}"><small>(Delete)</small></a>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-
-            : {{ post.author.first_name }} - {{ post.author.last_name }}
+            </div>
             <br>
-            {{ post.body|slice:':100' | safe }}
+            {{ post.snippet }}
+            
         </li>
         <br>
         <br>
